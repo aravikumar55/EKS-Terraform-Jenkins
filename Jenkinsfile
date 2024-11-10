@@ -40,7 +40,8 @@ pipeline {
             steps {
                 withAWS(credentials: 'aws-creds', region: 'us-west-2') {
                     script { 
-                        "terraform -chdir=eks/ init"
+                        "terraform -chdir=eks/ init -reconfigure"
+                        "terraform -chdir=eks/ init -migrate-state"
                         if (params.Terraform_Action == 'plan') {
                             sh "terraform -chdir=eks/ plan -var-file=${params.Environment}.tfvars"
                         }   else if (params.Terraform_Action == 'apply') {
