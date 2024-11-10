@@ -39,7 +39,8 @@ pipeline {
         stage('Action') {
             steps {
                 withAWS(credentials: 'aws-creds', region: 'us-west-2') {
-                    script {    
+                    script { 
+                        "terraform -chdir=eks/ init"
                         if (params.Terraform_Action == 'plan') {
                             sh "terraform -chdir=eks/ plan -var-file=${params.Environment}.tfvars"
                         }   else if (params.Terraform_Action == 'apply') {
