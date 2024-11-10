@@ -7,7 +7,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "madhu-125126"
+    bucket         = "ravi-126"
     region         = "us-west-2"
     key            = "eks/terraform.tfstate"
   }
